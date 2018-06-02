@@ -1,4 +1,5 @@
-const open = require('amqplib').connect('amqp://hack:hack@localhost/hack');
+const config = require('../../config').amqp;
+const open = require('amqplib').connect(config.url);
 
 
 function bufferify(message) {
