@@ -3,11 +3,13 @@ const mongoose = require('mongoose');
 const userSchema = mongoose.Schema({
   username: String,
   password: String,
-  userinfo: {
-    email: String,
-    vipExpireDate: { type: Date, default: Date.now },
+  userinfo: { 
+    email: String, 
+    gender: String, 
+    nickname: String,
+    biography: String,
+    birthday: String,
   },
-  activated: { type: Boolean, default: false },
 });
 
 const UserModel = mongoose.model('User', userSchema);

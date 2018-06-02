@@ -29,7 +29,7 @@ const router = require('./routes');
 app.use(router.routes());
 
 db(() => {
-  mq.open(() => {
-    app.listen(config.port, () => console.log(`listening on port ${config.port}`));
-  });
+  //mq.open(() => {
+  app.listen(config.port, () => console.log(`listening on port ${config.port}`));
+  //});
 });
