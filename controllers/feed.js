@@ -7,7 +7,7 @@ module.exports = {
       const { sources, delta, limit } = ctx.query;
       
       const newsSet = []
-      for(let source of sources) {
+      for(let source of JSON.parse(sources)) {
         const news = await FeedModel.find({ _id: ctx.session.passport.user._id })
                                     .skip(delta || 0).limit(limit).sort({ time: -1 });
         if(news) {
@@ -17,7 +17,6 @@ module.exports = {
       ctx.state.data = newsSet;
     } else if(type == 'people') {
       const { delta, limit } = ctx.query;
-      
     }
   }
 }
