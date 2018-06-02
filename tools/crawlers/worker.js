@@ -1,5 +1,7 @@
-const open = require('amqplib').connect('amqp://hack:hack@localhost/hack');
+const config = require('../../config').amqp;
+const open = require('amqplib').connect(config.url);
 const Crawlers = require('./routines');
+
 
 function Worker(source, interval = 3000) {
   const queue_name = source;

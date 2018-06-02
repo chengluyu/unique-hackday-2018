@@ -1,5 +1,6 @@
-const open = require('amqplib').connect('amqp://hack:hack@localhost/hack');
-
+const config = require('../../config').amqp;
+const open = require('amqplib').connect(config.url);
+const UserModel = require('../../models/user');
 
 function bufferify(message) {
   return Buffer.from(JSON.stringify(message));
@@ -13,33 +14,23 @@ const sendQueueOptions = {
   persistent: true, contentType: 'application/json'
 };
 
-const zhihuTestData = [
-  { username: 'empty', identifier: 'kai-yuan-ge' },
-  { username: 'empty', identifier: 'kai-yuan-ge' },
-  { username: 'empty', identifier: 'kai-yuan-ge' },
-  { username: 'empty', identifier: 'kai-yuan-ge' }
-];
-
-const doubanTestData = [
-  { username: 'empty', identifier: '119617402' },
-  { username: 'empty', identifier: '119617402' },
-  { username: 'empty', identifier: '119617402' },
-  { username: 'empty', identifier: '119617402' }
-];
-
-open.then((conn) => {
-  return conn.createChannel();
-}).then((ch) => {
-  ch.assertQueue('zhihu', assertQueueOptions).then(() => {
-    for (const item of zhihuTestData) {
-      ch.sendToQueue('zhihu', bufferify(item), sendQueueOptions);
-      console.log('Message sent');
+UserModel.find((error, users) => {
+  console.log(`Fetched ${users.length} user(s) from database`);
+  open.then((conn) => {
+    return conn.createChannel();
+  }).then((ch) => {
+    function sendMessageFrom(source) {
+      console.log(`Now begin sending message from ${source}`);
+      ch.assertQueue(source, assertQueueOptions).then(() => {
+        for (const user of users) {
+          if (typeof user.sources[source] === 'string') {
+            ch.sendToQueue(source, bufferify(item), sendQueueOptions);
+            console.log('Message sent');
+          }
+        }
+      });
     }
-  });
-  ch.assertQueue('douban', assertQueueOptions).then(() => {
-    for (const item of doubanTestData) {
-      ch.sendToQueue('douban', bufferify(item), sendQueueOptions);
-      console.log('Message sent');
-    }
-  });
-}).catch(console.warn);
+    sendMessageFrom('zhihu');
+    sendMessageFrom('douban');
+  }).catch(console.warn);
+});
