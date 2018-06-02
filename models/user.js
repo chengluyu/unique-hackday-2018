@@ -10,6 +10,7 @@ const userSchema = mongoose.Schema({
     biography: String,
     birthday: String,
   },
+  sources: Object
 });
 
 const UserModel = mongoose.model('User', userSchema);
