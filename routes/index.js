@@ -1,13 +1,14 @@
+const path = require('path');
 const router = require('koa-router')({
   prefix: '/hack'
 });
-const multer = require('koa-router-multer');
+const multer = require('koa-multer');
 const controllers = require('../controllers');
 const { authorizationMiddleware, validationMiddleware } = require('../middlewares/auth');
 
 const uploader = multer({ 
   storage: {
-    destination: (req, file, cb) => cb(null, '../upload'),
+    destination: (req, file, cb) => cb(null, './upload/'),
     filename: (req, file, cb) => cb(null, `${file.filename}-${Date.now()}`),
   }
 });
@@ -24,6 +25,6 @@ router.get('/user', validationMiddleware, controllers.user.get);
 
 router.post('/user', validationMiddleware, controllers.user.post);
 
-router.post('/face', validationMiddleware, uploader.single('face'), controllers.face.post);
+router.post('/face', uploader.single('face'), controllers.face.post);
 
 module.exports = router;
