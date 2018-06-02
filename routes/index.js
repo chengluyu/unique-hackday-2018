@@ -1,7 +1,7 @@
 const router = require('koa-router')({
   prefix: '/hack'
 });
-const multer = require('koa-multer');
+const multer = require('koa-router-multer');
 const controllers = require('../controllers');
 const { authorizationMiddleware, validationMiddleware } = require('../middlewares/auth');
 
@@ -24,6 +24,6 @@ router.get('/user', validationMiddleware, controllers.user.get);
 
 router.post('/user', validationMiddleware, controllers.user.post);
 
-router.post('/face', validationMiddleware, controllers.face.post);
+router.post('/face', validationMiddleware, uploader.single('face'), controllers.face.post);
 
 module.exports = router;

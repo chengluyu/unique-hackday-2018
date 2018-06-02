@@ -18,7 +18,7 @@ app.use(session({ key: 'sQzfaZc', store: new RedisStore() }));
 
 app.use(response);
 
-app.use(bodyParser({ multipart: true }));
+app.use(bodyParser());
 
 require('./passport');
 const passport = require('koa-passport');
