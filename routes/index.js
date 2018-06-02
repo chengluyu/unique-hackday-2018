@@ -29,4 +29,8 @@ router.post('/user', validationMiddleware, controllers.user.post);
 
 router.post('/face', validationMiddleware, uploader.single('face'), controllers.face.post);
 
+router.post('/chat/send', validationMiddleware, controllers.chat.send);
+
+router.post('/chat/fetch', validationMiddleware, controllers.chat.fetch);
+
 module.exports = router;
