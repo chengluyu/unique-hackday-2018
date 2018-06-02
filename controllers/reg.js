@@ -1,8 +1,7 @@
 const UserModel = require('../models/user');
 const mq = require('../libs/mq');
 const config = require('../config').mongodb;
-const schemas = require('../schemas')
-
+const schemas = require('../schemas');
 
 module.exports = async (ctx, next) => {
   if (schemas.registerRegister(ctx.request.body)) {

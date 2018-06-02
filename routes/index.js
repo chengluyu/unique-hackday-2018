@@ -1,6 +1,7 @@
 const router = require('koa-router')({
   prefix: '/face'
 });
+const multer = require('koa-multer');
 const controllers = require('../controllers');
 const { authorizationMiddleware, validationMiddleware } = require('../middlewares/auth');
 
