@@ -2,7 +2,7 @@ const mq = require('../libs/mq');
 
 module.exports = {
   post: async (ctx) => {
-    const { path } = ctx.req.file;
-    console.log(path);
+    console.log('face post');
+    console.log(ctx.req.file);
   }
 }
