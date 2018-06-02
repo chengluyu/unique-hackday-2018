@@ -21,10 +21,4 @@ router.get('/activate', controllers.activate);
 
 router.get('/captcha', controllers.captcha);
 
-router.get('/ver', controllers.ver);
-
-router.get('/ad/card', controllers.ad.card);
-
-router.get('/ad/slide', controllers.ad.slide);
-
 module.exports = router;
