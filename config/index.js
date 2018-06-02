@@ -12,5 +12,5 @@ const config = {
 
 module.exports = {
   ...config,
-  ...(process.env.NODE_ENV == 'production' ? require('./production') : require('./development')),
+  ...(process.env.NODE_ENV === 'production' ? require('./production') : require('./development')),
 }

@@ -1,6 +1,6 @@
-const q = 'mailer-reg';
+const config = require('../config').amqp;
 
-const open = require('amqplib').connect('amqp://hack:hack@localhost/hack');
+const open = require('amqplib').connect(config.url);
 let _ch = null;
 
 module.exports = {
