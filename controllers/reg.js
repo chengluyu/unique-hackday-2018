@@ -1,5 +1,5 @@
 const UserModel = require('../models/user');
-const mq = require('../libs/mq');
+//const mq = require('../libs/mq');
 const config = require('../config').mongodb;
 const schemas = require('../schemas');
 
