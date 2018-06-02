@@ -5,13 +5,15 @@ const router = require('koa-router')({
 const multer = require('koa-multer');
 const controllers = require('../controllers');
 const { authorizationMiddleware, validationMiddleware } = require('../middlewares/auth');
-
+/*
 const uploader = multer({ 
   storage: {
-    destination: (req, file, cb) => cb(null, './upload/'),
+    destination: (req, file, cb) => cb(null, '/tmp/hack/'),
     filename: (req, file, cb) => cb(null, `${file.filename}-${Date.now()}`),
   }
 });
+*/
+const uploader = multer({ dest: '/tmp/hack' })
 
 router.get('/login', authorizationMiddleware, controllers.login);
 
