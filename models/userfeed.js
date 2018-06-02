@@ -3,7 +3,8 @@ const feedSchema = require('./feed').schema;
 
 const UserFeedSchema = mongoose.Schema({
   user: mongoose.Schema.Types.ObjectId,
-  list: [feedSchema],
+  source: String,
+  feed: feedSchema,
 });
 
 const UserFeedModel = mongoose.model('UserFeed', UserFeedSchema);
