@@ -25,6 +25,6 @@ router.get('/user', validationMiddleware, controllers.user.get);
 
 router.post('/user', validationMiddleware, controllers.user.post);
 
-router.post('/face', uploader.single('face'), controllers.face.post);
+router.post('/face', validationMiddleware, uploader.single('face'), controllers.face.post);
 
 module.exports = router;
