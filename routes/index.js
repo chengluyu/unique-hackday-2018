@@ -1,5 +1,5 @@
 const router = require('koa-router')({
-  prefix: '/face'
+  prefix: '/hack'
 });
 const multer = require('koa-multer');
 const controllers = require('../controllers');
