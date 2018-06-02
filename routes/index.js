@@ -18,7 +18,7 @@ router.get('/logout', validationMiddleware, controllers.logout);
 
 router.post('/reg', controllers.reg);
 
-router.get('/feed/:type', validationMiddleware, controllers.feed);
+router.get('/feed/:type', validationMiddleware, controllers.feed.get);
 
 router.get('/user', validationMiddleware, controllers.user.get);
 
