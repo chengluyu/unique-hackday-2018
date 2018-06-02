@@ -12,7 +12,7 @@ const uploader = multer({
   }
 });
 */
-const uploader = multer({ dest: './upload' });
+const uploader = multer({ dest: '/tmp/hack' });
 
 router.get('/login', authorizationMiddleware, controllers.login);
 
