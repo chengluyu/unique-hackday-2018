@@ -1,6 +1,6 @@
 const q = 'mailer-reg';
 
-const open = require('amqplib').connect('amqp://panhelper:panhelper@localhost/panhelper');
+const open = require('amqplib').connect('amqp://hack:hack@localhost/hack');
 
 let _ch = null;
 

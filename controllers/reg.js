@@ -15,16 +15,11 @@ const validateEmail = (email) => {
 }
 
 module.exports = async (ctx, next) => {
-  const { username, password, email, captcha } = ctx.request.body;
-  if(ctx.session.captcha === undefined || captcha === undefined || ctx.session.captcha.toUpperCase() != captcha.toUpperCase()) {
-    return ctx.state = { code: 510, data: { err: '验证码错误' } };
-  }
+  const { username, password, email } = ctx.request.body;
   if(username && password && email && validateUserName(username) && validatePassword(password) && validateEmail(email)) {
-    const user = new UserModel({ username, password, userinfo: { email }, activated: false });
+    const user = new UserModel({ username, password, userinfo: { email } });
     try {
       const res = await user.save();
-      const token = res._id.toString();
-      mq.publish({ token, username, email });
     } catch(e) {
       const { code, errmsg } = e.toJSON();
       if(code === 11000) {
