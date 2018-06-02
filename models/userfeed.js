@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const FeedModel = require('./feed');
+const feedSchema = require('./feed').schema;
 
 const UserFeedSchema = mongoose.Schema({
   user: mongoose.Schema.Types.ObjectId,
-  list: [FeedModel],
+  list: [feedSchema],
 });
 
 const UserFeedModel = mongoose.model('UserFeed', UserFeedSchema);
