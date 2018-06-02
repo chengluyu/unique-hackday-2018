@@ -1,22 +1,12 @@
 const UserModel = require('../models/user');
 const mq = require('../libs/mq');
 const config = require('../config').mongodb;
+const schemas = require('../schemas')
 
-const validateUserName = (username) => {
-  return /^(\d|[0-9]|[a-z]|[A-Z]|\_){3,20}$/.test(username);
-}
-
-const validatePassword = (password) => {
-  return /^\S{6,20}$/.test(password);
-}
-
-const validateEmail = (email) => {
-  return /^[A-Za-z0-9\u4e00-\u9fa5]+@((qq)|(163)|(126)|(gmail))\.com$/.test(email);
-}
 
 module.exports = async (ctx, next) => {
-  const { username, password, email } = ctx.request.body;
-  if(username && password && email && validateUserName(username) && validatePassword(password) && validateEmail(email)) {
+  if (schemas.registerRegister(ctx.request.body)) {
+    const { username, password, email } = ctx.request.body;
     const user = new UserModel({ username, password, userinfo: { email } });
     try {
       const res = await user.save();

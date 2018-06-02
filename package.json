@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/chengluyu/unique-hackday-2018#readme",
   "dependencies": {
+    "ajv": "^6.5.0",
     "amqplib": "^0.5.2",
     "ioredis": "^3.2.2",
     "koa": "^2.5.1",

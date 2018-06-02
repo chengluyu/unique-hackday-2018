@@ -1,0 +1,28 @@
+{
+  "definitions": {
+    "username": {
+      "type": "string",
+      "pattern": "^(\\d|[0-9]|[a-z]|[A-Z]|\\_){3,20}$"
+    },
+    "password": {
+      "type": "string",
+      "pattern": "^\\S{6,20}$"
+    },
+    "email": {
+      "type": "string",
+      "pattern": "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$"
+    }
+  },
+  "type": "object",
+  "properties": {
+    "username": {
+      "$ref": "#/definitions/username"
+    },
+    "password": {
+      "$ref": "#/definitions/password"
+    },
+    "email": {
+      "$ref": "#/definitions/email"
+    }
+  }
+}
