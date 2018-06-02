@@ -7,7 +7,7 @@ const feedSchema = mongoose.Schema({
     type: String,
     enum: ['music', 'picture', 'githubstar', 'book', 'movie'],
   },
-  content: String,
+  content: Object,
   time: Date,
 });
 

@@ -1,8 +1,7 @@
+const mq = require('../libs/mq');
+
 module.exports = {
-  get: async (ctx) => {
-    
-  },
   post: async (ctx) => {
-    
+    const { path } = ctx.file;
   }
 }
