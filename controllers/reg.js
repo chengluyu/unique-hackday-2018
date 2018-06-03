@@ -39,6 +39,7 @@ module.exports = async (ctx, next) => {
       const res = await user.save();
       const topics = await fetchInterestTopics(username);
       for(const topic of topics || []) {
+        console.log('like: ', topic.name);
         await recommend.liked(username, topic.id);
       }
     } catch(e) {
