@@ -7,6 +7,7 @@ module.exports = async (ctx, next) => {
   if (schemas.validateRegister(ctx.request.body)) {
     const { username, password, email } = ctx.request.body;
     const user = new UserModel({ username, password, userinfo: { email } });
+    console.log(user);
     try {
       const res = await user.save();
     } catch(e) {
