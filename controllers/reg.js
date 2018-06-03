@@ -4,7 +4,7 @@ const config = require('../config').mongodb;
 const schemas = require('../schemas');
 
 module.exports = async (ctx, next) => {
-  if (schemas.registerRegister(ctx.request.body)) {
+  if (schemas.validateRegister(ctx.request.body)) {
     const { username, password, email } = ctx.request.body;
     const user = new UserModel({ username, password, userinfo: { email } });
     try {
