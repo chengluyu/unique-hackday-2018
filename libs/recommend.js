@@ -1,5 +1,5 @@
 const raccoon = require('raccoon');
-
+/*
 const zhihu = require('../data/zhihu.json').slice(0, 20);
 zhihu.map((user) => {
   const username = user.user.fullname;
@@ -11,7 +11,7 @@ zhihu.map((user) => {
     raccoon.liked(username, topic.id);
   }
 });
-
+*/
 module.exports = {
   liked: (userid, itemid) => raccoon.liked(userid, itemid),
   mostSimilarUsers: (userid) => raccoon.mostSimilarUsers(userid),
