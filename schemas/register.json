@@ -2,7 +2,7 @@
   "definitions": {
     "username": {
       "type": "string",
-      "pattern": "^(\\d|[0-9]|[a-z]|[A-Z]|\\_){3,20}$"
+      "pattern": "^(\\d|[0-9]|[a-z]|[A-Z]|\\_|\\-){3,20}$"
     },
     "password": {
       "type": "string",
