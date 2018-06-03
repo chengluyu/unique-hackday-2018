@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const interestSchema = require('./interest').schema;
 
 const userSchema = mongoose.Schema({
   username: String,
@@ -9,6 +10,15 @@ const userSchema = mongoose.Schema({
     nickname: String,
     biography: String,
     birthday: String,
+  },
+  interest: {
+    zhihu: {
+      topics: [interestSchema],
+    },
+    douban: {
+      books: [interestSchema],
+      movies: [interestSchema],
+    },
   },
   sources: Object
 });
