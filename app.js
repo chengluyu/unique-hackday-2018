@@ -30,6 +30,8 @@ app.use(router.routes());
 
 mq.open();
 
+require('./libs/recommend');
+
 db(() => {
   app.listen(config.port, () => console.log(`listening on port ${config.port}`));
 });

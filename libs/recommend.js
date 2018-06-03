@@ -1,10 +1,10 @@
 const raccoon = require('raccoon');
 
-const zhihu = require('../data/zhihu.json').slice(20);
+const zhihu = require('../data/zhihu.json').slice(0, 20);
 zhihu.map((user) => {
   const username = user.user.fullname;
   if(user.topics && user.topics.length > 20) {
-    user.topics = user.topics.slice(20);
+    user.topics = user.topics.slice(0, 20);
   }
   for(const topic of user.topics || []) {
     console.log(username, topic.name);
