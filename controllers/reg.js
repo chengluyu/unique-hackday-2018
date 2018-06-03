@@ -8,6 +8,7 @@ module.exports = async (ctx, next) => {
     const { username, password, email } = ctx.request.body;
     const user = new UserModel({ username, password, userinfo: { email } });
     console.log(user);
+    console.log(ctx.request.body);
     try {
       const res = await user.save();
     } catch(e) {
