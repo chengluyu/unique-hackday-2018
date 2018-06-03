@@ -7,6 +7,7 @@ zhihu.map((user) => {
     user.topics = user.topics.slice(20);
   }
   for(const topic of user.topics || []) {
+    console.log(username, topic.name);
     raccoon.liked(username, topic.id);
   }
 });
