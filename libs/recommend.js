@@ -1,6 +1,6 @@
 const raccoon = require('raccoon');
 
-const zhihu = require('../data/zhihu.json').slice(50);
+const zhihu = require('../data/zhihu.json').slice(20);
 zhihu.map((user) => {
   const username = user.user.fullname;
   if(user.topics && user.topics.length > 20) {
