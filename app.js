@@ -28,8 +28,8 @@ app.use(passport.session());
 const router = require('./routes');
 app.use(router.routes());
 
+mq.open();
+
 db(() => {
-  mq.open(() => {
-    app.listen(config.port, () => console.log(`listening on port ${config.port}`));
-  });
+  app.listen(config.port, () => console.log(`listening on port ${config.port}`));
 });
