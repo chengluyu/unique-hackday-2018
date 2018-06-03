@@ -1,4 +1,7 @@
 const UserFeedModel = require('../models/userfeed');
+const recommend = require('../libs/recommend');
+
+const topics = require('../data/zhihu-topics.json');
 
 module.exports = {
   get: async (ctx) => {
@@ -6,17 +9,19 @@ module.exports = {
     if(type == 'thing') {
       const { sources, delta, limit } = ctx.query;
       
-      const newsSet = []
-      for(let source of JSON.parse(sources)) {
-        const news = await UserFeedModel.find({ user: ctx.session.passport.user._id, source })
-                                    .skip(delta || 0).limit(limit).sort({ time: -1 });
-        if(news) {
-          newsSet.splice(-1, 0, ...news);
-        }
+      const recs = await recommend.recommendFor(ctx.session.passport.user.username);
+      const res = []
+      for(const rec of recs) {
+        res.append(topics[rec]);
       }
-      ctx.state.data = newsSet;
+
+      ctx.state.data = res;
     } else if(type == 'people') {
       const { delta, limit } = ctx.query;
+
+      const rec = await recommend.mostSimilarUsers(ctx.session.passport.user.username);
+
+      ctx.state.data = rec;
     }
   }
 }

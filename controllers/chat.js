@@ -16,7 +16,7 @@ module.exports = {
   async fetchAll(context) {
     const userID = context.session.passport.user.username;
     const historyMessages = await MessageModel.find({
-      to: userID
+      destination: userID
     });
     for (const message of historyMessages) {
       if (!message.read) {
