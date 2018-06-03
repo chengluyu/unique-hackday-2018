@@ -1,10 +1,10 @@
 const raccoon = require('raccoon');
 
-const zhihu = require('../data/zhihu.json');
+const zhihu = require('../data/zhihu.json').slice(100);
 zhihu.map((user) => {
   const username = user.user.fullname;
   for(const topic of user.topics || []) {
-    raccoon.liked(username, topic.url);
+    raccoon.liked(username, topic.id);
   }
 });
 
